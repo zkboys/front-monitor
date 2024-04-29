@@ -1,6 +1,6 @@
 {
   "name": "front-monitor",
-  "version": "0.0.1",
+  "private": true,
   "description": "前端监控SDK，可用来收集并上报：代码报错、性能数据、用户行为、加载资源、个性化指标等数据",
   "scripts": {
     "clean": "rimraf packages/*/dist",
@@ -10,7 +10,7 @@
     "changeset": "changeset",
     "version-packages": "changeset version",
     "publish": "changeset publish --registry=https://registry.npmjs.com/",
-    "release": "pnpm build && pnpm publish",
+    "release": "pnpm build && pnpm run publish",
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "keywords": [
