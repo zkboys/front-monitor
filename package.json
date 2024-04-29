@@ -21,7 +21,7 @@
   "author": "zkboys",
   "license": "MIT",
   "dependencies": {
-    "@changesets/cli": "^2.26.1",
+    "@changesets/cli": "^2.27.1",
     "core-js": "^3.19.1",
     "error-stack-parser": "^2.1.4",
     "path-to-regexp": "^6.2.0",

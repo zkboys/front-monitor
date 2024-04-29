@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@changesets/cli':
-        specifier: ^2.26.1
+        specifier: ^2.27.1
         version: 2.27.1
       core-js:
         specifier: ^3.19.1
@@ -125,9 +125,6 @@ importers:
 
   packages/recordscreen:
     dependencies:
-      '@types/pako':
-        specifier: ^2.0.0
-        version: 2.0.3
       '@front-monitor/common':
         specifier: workspace:*
         version: link:../common
@@ -137,6 +134,9 @@ importers:
       '@front-monitor/utils':
         specifier: workspace:*
         version: link:../utils
+      '@types/pako':
+        specifier: ^2.0.0
+        version: 2.0.3
       js-base64:
         specifier: 3.7.3
         version: 3.7.3
@@ -155,9 +155,6 @@ importers:
 
   packages/utils:
     dependencies:
-      '@types/ua-parser-js':
-        specifier: ^0.7.36
-        version: 0.7.39
       '@front-monitor/common':
         specifier: workspace:*
         version: link:../common
@@ -167,6 +164,9 @@ importers:
       '@front-monitor/types':
         specifier: workspace:*
         version: link:../types
+      '@types/ua-parser-js':
+        specifier: ^0.7.36
+        version: 0.7.39
       ua-parser-js:
         specifier: 1.0.32
         version: 1.0.32
