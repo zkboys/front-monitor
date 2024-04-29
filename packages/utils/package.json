@@ -19,5 +19,9 @@
     "@front-monitor/common": "workspace:*",
     "@front-monitor/core": "workspace:*",
     "@front-monitor/types": "workspace:*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:zkboys/front-monitor.git"
   }
 }

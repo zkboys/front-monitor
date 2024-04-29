@@ -15,5 +15,9 @@
   "license": "MIT",
   "dependencies": {
     "@front-monitor/common": "workspace:*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:zkboys/front-monitor.git"
   }
 }

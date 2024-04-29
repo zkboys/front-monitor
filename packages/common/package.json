@@ -12,5 +12,9 @@
     "dist"
   ],
   "author": "zkboys",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:zkboys/front-monitor.git"
+  }
 }
