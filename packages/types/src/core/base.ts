@@ -1,4 +1,4 @@
-import { EVENTTYPES, STATUS_CODE, BREADCRUMBTYPES } from '@front-monitor/common';
+import { EVENT_TYPES, STATUS_CODE, BREADCRUMB_TYPES } from '@front-monitor/common';
 
 // Without将T中不包含U的属性 设置为可选属性
 export type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
@@ -32,7 +32,7 @@ export interface HttpData {
 /**
  * 资源加载失败
  */
-export interface ResouceError {
+export interface ResourceError {
   time: number;
   message: string; // 加载失败的信息
   name: string; // 脚本类型：js脚本
@@ -82,7 +82,7 @@ export interface CodeError {
  * 用户行为
  */
 export interface Behavior {
-  type: EVENTTYPES;
+  type: EVENT_TYPES;
   category: any;
   status: STATUS_CODE;
   time: number;
@@ -105,7 +105,7 @@ export interface RecordScreen {
  */
 export interface ReportData
   extends HttpData,
-    ResouceError,
+    ResourceError,
     LongTask,
     PerformanceData,
     MemoryData,
@@ -142,7 +142,7 @@ export interface IAnyObject {
 export type voidFun = (...args: any[]) => void;
 
 export interface ReplaceHandler {
-  type: EVENTTYPES;
+  type: EVENT_TYPES;
   callback: Callback;
 }
 
@@ -162,8 +162,8 @@ export interface AuthInfo {
 }
 
 export interface BreadcrumbData {
-  type: EVENTTYPES; // 事件类型
-  category: BREADCRUMBTYPES; // 用户行为类型
+  type: EVENT_TYPES; // 事件类型
+  category: BREADCRUMB_TYPES; // 用户行为类型
   status: STATUS_CODE; // 行为状态
   time: number; // 发生时间
   data: any;

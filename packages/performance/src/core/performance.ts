@@ -29,6 +29,7 @@ function checkDOMChange(callback: Callback) {
     }
   });
 }
+
 function getRenderTime(): number {
   let startTime = 0;
   entries.forEach(entry => {
@@ -39,8 +40,10 @@ function getRenderTime(): number {
   // performance.timing.navigationStart 页面的起始时间
   return startTime - performance.timing.navigationStart;
 }
+
 const viewportWidth = _global.innerWidth;
 const viewportHeight = _global.innerHeight;
+
 // dom 对象是否在屏幕内
 function isInScreen(dom: HTMLElement): boolean {
   const rectInfo = dom.getBoundingClientRect();
@@ -62,6 +65,7 @@ function getFirstScreenPaint(callback: Callback) {
     observeFirstScreenPaint(callback);
   }
 }
+
 // 外部通过callback 拿到首屏加载时间
 export function observeFirstScreenPaint(callback: Callback): void {
   const ignoreDOMList = ['STYLE', 'SCRIPT', 'LINK'];

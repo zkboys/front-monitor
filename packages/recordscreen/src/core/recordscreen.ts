@@ -2,7 +2,7 @@ import { record } from 'rrweb';
 import pako from 'pako';
 import { Base64 } from 'js-base64';
 import { getTimestamp, generateUUID, _support } from '@front-monitor/utils';
-import { EVENTTYPES, STATUS_CODE } from '@front-monitor/common';
+import { EVENT_TYPES, STATUS_CODE } from '@front-monitor/common';
 
 export function handleScreen(transportData: any, recordScreenTime: number): void {
   // events存储录屏信息
@@ -17,7 +17,7 @@ export function handleScreen(transportData: any, recordScreenTime: number): void
           const recordScreenId = _support.recordScreenId;
           _support.recordScreenId = generateUUID();
           transportData.send({
-            type: EVENTTYPES.RECORDSCREEN,
+            type: EVENT_TYPES.RECORD_SCREEN,
             recordScreenId,
             time: getTimestamp(),
             status: STATUS_CODE.OK,

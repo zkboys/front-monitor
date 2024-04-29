@@ -4,11 +4,10 @@ import { Callback, InitOptions } from '@front-monitor/types';
 
 /**
  * 检测页面是否白屏
- * @param {function} callback - 回到函数获取检测结果
- * @param {boolean} skeletonProject - 页面是否有骨架屏
- * @param {array} whiteBoxElements - 容器列表，默认值为['html', 'body', '#app', '#root']
+ * @param callback - 回到函数获取检测结果
+ * @param skeletonProject - 页面是否有骨架屏
+ * @param whiteBoxElements - 容器列表，默认值为['html', 'body', '#app', '#root']
  */
-
 export function openWhiteScreen(
   callback: Callback,
   { skeletonProject, whiteBoxElements }: InitOptions
@@ -48,6 +47,7 @@ export function openWhiteScreen(
       return element.nodeName.toLowerCase();
     }
   }
+
   // 判断采样点是否为容器节点
   function isContainer(element: HTMLElement) {
     const selector = getSelector(element);
@@ -56,6 +56,7 @@ export function openWhiteScreen(
     }
     return whiteBoxElements?.indexOf(selector) != -1;
   }
+
   // 采样对比
   function sampling() {
     let emptyPoints = 0;
@@ -102,6 +103,7 @@ export function openWhiteScreen(
       status: emptyPoints == 17 ? STATUS_CODE.ERROR : STATUS_CODE.OK,
     });
   }
+
   // 开启白屏轮训
   function openWhiteLoop(): void {
     if (_support._loopTimer) return;
@@ -113,6 +115,7 @@ export function openWhiteScreen(
       idleCallback();
     }, 1000);
   }
+
   function idleCallback() {
     if ('requestIdleCallback' in _global) {
       requestIdleCallback(deadline => {

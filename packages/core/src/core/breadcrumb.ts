@@ -1,4 +1,4 @@
-import { EVENTTYPES, BREADCRUMBTYPES } from '@front-monitor/common';
+import { EVENT_TYPES, BREADCRUMB_TYPES } from '@front-monitor/common';
 import { validateOption, getTimestamp, _support } from '@front-monitor/utils';
 import { BreadcrumbData, InitOptions } from '@front-monitor/types';
 
@@ -46,34 +46,34 @@ export class Breadcrumb {
     return this.stack;
   }
 
-  getCategory(type: EVENTTYPES): BREADCRUMBTYPES {
+  getCategory(type: EVENT_TYPES): BREADCRUMB_TYPES {
     switch (type) {
       // 接口请求
-      case EVENTTYPES.XHR:
-      case EVENTTYPES.FETCH:
-        return BREADCRUMBTYPES.HTTP;
+      case EVENT_TYPES.XHR:
+      case EVENT_TYPES.FETCH:
+        return BREADCRUMB_TYPES.HTTP;
 
       // 用户点击
-      case EVENTTYPES.CLICK:
-        return BREADCRUMBTYPES.CLICK;
+      case EVENT_TYPES.CLICK:
+        return BREADCRUMB_TYPES.CLICK;
 
       // 路由变化
-      case EVENTTYPES.HISTORY:
-      case EVENTTYPES.HASHCHANGE:
-        return BREADCRUMBTYPES.ROUTE;
+      case EVENT_TYPES.HISTORY:
+      case EVENT_TYPES.HASHCHANGE:
+        return BREADCRUMB_TYPES.ROUTE;
 
       // 加载资源
-      case EVENTTYPES.RESOURCE:
-        return BREADCRUMBTYPES.RESOURCE;
+      case EVENT_TYPES.RESOURCE:
+        return BREADCRUMB_TYPES.RESOURCE;
 
       // Js代码报错
-      case EVENTTYPES.UNHANDLEDREJECTION:
-      case EVENTTYPES.ERROR:
-        return BREADCRUMBTYPES.CODEERROR;
+      case EVENT_TYPES.UNHANDLEDREJECTION:
+      case EVENT_TYPES.ERROR:
+        return BREADCRUMB_TYPES.CODE_ERROR;
 
       // 用户自定义
       default:
-        return BREADCRUMBTYPES.CUSTOM;
+        return BREADCRUMB_TYPES.CUSTOM;
     }
   }
 

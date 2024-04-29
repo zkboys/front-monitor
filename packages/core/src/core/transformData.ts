@@ -1,7 +1,7 @@
 import { options } from './options';
 import { fromHttpStatus, interceptStr, getTimestamp } from '@front-monitor/utils';
 import { HTTP_CODE, STATUS_CODE } from '@front-monitor/common';
-import { HttpData, ResouceError, ResourceTarget } from '@front-monitor/types';
+import { HttpData, ResourceError, ResourceTarget } from '@front-monitor/types';
 
 // 处理接口的状态
 export function httpTransform(data: HttpData): HttpData {
@@ -48,7 +48,8 @@ export function httpTransform(data: HttpData): HttpData {
     },
   };
 }
-export function resourceTransform(target: ResourceTarget): ResouceError {
+
+export function resourceTransform(target: ResourceTarget): ResourceError {
   return {
     time: getTimestamp(),
     message:

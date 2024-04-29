@@ -10,37 +10,37 @@ import {
   variableTypeDetection,
   supportsHistory,
 } from '@front-monitor/utils';
-import { EVENTTYPES, HTTPTYPE, EMethods } from '@front-monitor/common';
+import { EVENT_TYPES, HTTP_TYPE, EMethods } from '@front-monitor/common';
 import { ReplaceHandler, voidFun } from '@front-monitor/types';
 
 // 判断当前接口是否为需要过滤掉的接口
 function isFilterHttpUrl(url: string): boolean {
   return options.filterXhrUrlRegExp && options.filterXhrUrlRegExp.test(url);
 }
-function replace(type: EVENTTYPES): void {
+function replace(type: EVENT_TYPES): void {
   switch (type) {
-    case EVENTTYPES.WHITESCREEN:
+    case EVENT_TYPES.WHITE_SCREEN:
       whiteScreen();
       break;
-    case EVENTTYPES.XHR:
+    case EVENT_TYPES.XHR:
       xhrReplace();
       break;
-    case EVENTTYPES.FETCH:
+    case EVENT_TYPES.FETCH:
       fetchReplace();
       break;
-    case EVENTTYPES.ERROR:
+    case EVENT_TYPES.ERROR:
       listenError();
       break;
-    case EVENTTYPES.HISTORY:
+    case EVENT_TYPES.HISTORY:
       historyReplace();
       break;
-    case EVENTTYPES.UNHANDLEDREJECTION:
+    case EVENT_TYPES.UNHANDLEDREJECTION:
       unhandledrejectionReplace();
       break;
-    case EVENTTYPES.CLICK:
+    case EVENT_TYPES.CLICK:
       domReplace();
       break;
-    case EVENTTYPES.HASHCHANGE:
+    case EVENT_TYPES.HASHCHANGE:
       listenHashchange();
       break;
     default:
@@ -62,7 +62,7 @@ function xhrReplace(): void {
         method: variableTypeDetection.isString(args[0]) ? args[0].toUpperCase() : args[0],
         url: args[1],
         sTime: getTimestamp(),
-        type: HTTPTYPE.XHR,
+        type: HTTP_TYPE.XHR,
       };
       originalOpen.apply(this, args);
     };
@@ -94,7 +94,7 @@ function xhrReplace(): void {
         // 接口的执行时长
         this.frontMonitor_xhr.elapsedTime = eTime - this.frontMonitor_xhr.sTime;
         // 执行之前注册的xhr回调函数
-        notify(EVENTTYPES.XHR, this.frontMonitor_xhr);
+        notify(EVENT_TYPES.XHR, this.frontMonitor_xhr);
       });
       originalSend.apply(this, args);
     };
@@ -104,12 +104,12 @@ function fetchReplace(): void {
   if (!('fetch' in _global)) {
     return;
   }
-  replaceAop(_global, EVENTTYPES.FETCH, originalFetch => {
+  replaceAop(_global, EVENT_TYPES.FETCH, originalFetch => {
     return function (url: any, config: Partial<Request> = {}): void {
       const sTime = getTimestamp();
       const method = (config && config.method) || 'GET';
       let fetchData = {
-        type: HTTPTYPE.FETCH,
+        type: HTTP_TYPE.FETCH,
         method,
         requestData: config && config.body,
         url,
@@ -142,7 +142,7 @@ function fetchReplace(): void {
             if (options.handleHttpStatus && typeof options.handleHttpStatus == 'function') {
               fetchData.response = data;
             }
-            notify(EVENTTYPES.FETCH, fetchData);
+            notify(EVENT_TYPES.FETCH, fetchData);
           });
           return res;
         },
@@ -159,7 +159,7 @@ function fetchReplace(): void {
             status: 0,
             time: sTime,
           });
-          notify(EVENTTYPES.FETCH, fetchData);
+          notify(EVENT_TYPES.FETCH, fetchData);
           throw err;
         }
       );
@@ -169,8 +169,8 @@ function fetchReplace(): void {
 function listenHashchange(): void {
   // 通过onpopstate事件，来监听hash模式下路由的变化
   if (isExistProperty(_global, 'onhashchange')) {
-    on(_global, EVENTTYPES.HASHCHANGE, function (e: HashChangeEvent) {
-      notify(EVENTTYPES.HASHCHANGE, e);
+    on(_global, EVENT_TYPES.HASHCHANGE, function (e: HashChangeEvent) {
+      notify(EVENT_TYPES.HASHCHANGE, e);
     });
   }
 }
@@ -181,7 +181,7 @@ function listenError(): void {
     'error',
     function (e: ErrorEvent) {
       console.log(e);
-      notify(EVENTTYPES.ERROR, e);
+      notify(EVENT_TYPES.ERROR, e);
     },
     true
   );
@@ -198,7 +198,7 @@ function historyReplace(): void {
     const to = getLocationHref();
     const from = lastHref;
     lastHref = to;
-    notify(EVENTTYPES.HISTORY, {
+    notify(EVENT_TYPES.HISTORY, {
       from,
       to,
     });
@@ -211,7 +211,7 @@ function historyReplace(): void {
         const from = lastHref;
         const to = String(url);
         lastHref = to;
-        notify(EVENTTYPES.HISTORY, {
+        notify(EVENT_TYPES.HISTORY, {
           from,
           to,
         });
@@ -224,9 +224,9 @@ function historyReplace(): void {
   replaceAop(_global.history, 'replaceState', historyReplaceFn);
 }
 function unhandledrejectionReplace(): void {
-  on(_global, EVENTTYPES.UNHANDLEDREJECTION, function (ev: PromiseRejectionEvent) {
+  on(_global, EVENT_TYPES.UNHANDLEDREJECTION, function (ev: PromiseRejectionEvent) {
     // ev.preventDefault() 阻止默认行为后，控制台就不会再报红色错误
-    notify(EVENTTYPES.UNHANDLEDREJECTION, ev);
+    notify(EVENT_TYPES.UNHANDLEDREJECTION, ev);
   });
 }
 function domReplace(): void {
@@ -237,7 +237,7 @@ function domReplace(): void {
     _global.document,
     'click',
     function (this: any): void {
-      clickThrottle(EVENTTYPES.CLICK, {
+      clickThrottle(EVENT_TYPES.CLICK, {
         category: 'click',
         data: this,
       });
@@ -246,5 +246,5 @@ function domReplace(): void {
   );
 }
 function whiteScreen(): void {
-  notify(EVENTTYPES.WHITESCREEN);
+  notify(EVENT_TYPES.WHITE_SCREEN);
 }

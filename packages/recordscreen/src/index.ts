@@ -1,21 +1,21 @@
 import { handleScreen } from './core/recordscreen';
 import { SdkBase, RecordScreenOption, BasePlugin } from '@front-monitor/types';
-import { EVENTTYPES } from '@front-monitor/common';
+import { EVENT_TYPES } from '@front-monitor/common';
 import { validateOption, generateUUID, _support } from '@front-monitor/utils';
 
 export default class RecordScreen extends BasePlugin {
   type: string;
   recordScreenTime = 10; // 默认录屏时长
   recordScreenTypeList: string[] = [
-    EVENTTYPES.ERROR,
-    EVENTTYPES.UNHANDLEDREJECTION,
-    EVENTTYPES.RESOURCE,
-    EVENTTYPES.FETCH,
-    EVENTTYPES.XHR,
+    EVENT_TYPES.ERROR,
+    EVENT_TYPES.UNHANDLEDREJECTION,
+    EVENT_TYPES.RESOURCE,
+    EVENT_TYPES.FETCH,
+    EVENT_TYPES.XHR,
   ]; // 录屏事件集合
   constructor(params = {} as RecordScreenOption) {
-    super(EVENTTYPES.RECORDSCREEN);
-    this.type = EVENTTYPES.RECORDSCREEN;
+    super(EVENT_TYPES.RECORD_SCREEN);
+    this.type = EVENT_TYPES.RECORD_SCREEN;
     this.bindOptions(params);
   }
   bindOptions(params: RecordScreenOption) {

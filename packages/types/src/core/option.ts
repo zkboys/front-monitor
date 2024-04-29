@@ -13,7 +13,7 @@ export interface InitOptions {
   silentHashchange?: boolean; // 是否监听路由 hash 模式变化
   silentHistory?: boolean; // 是否监听路由 history模式变化
   silentPerformance?: boolean; // 是否获取页面性能指标
-  silentRecordScreen?: boolean; // 是否开启录屏
+  silentRecordScreen?: boolean; // 是否开启录屏 默认false
   recordScreenTime?: number; // 单次录屏时长
   recordScreenTypeList?: string[]; // 上报录屏的错误列表
   silentWhiteScreen?: boolean; // 是否开启白屏检测

@@ -1,5 +1,13 @@
-import { _support, validateOption, isBrowserEnv, Queue, isEmpty, getLocationHref, generateUUID } from '@front-monitor/utils';
-import { SDK_VERSION, EVENTTYPES } from '@front-monitor/common';
+import {
+  _support,
+  validateOption,
+  isBrowserEnv,
+  Queue,
+  isEmpty,
+  getLocationHref,
+  generateUUID,
+} from '@front-monitor/utils';
+import { SDK_VERSION, EVENT_TYPES } from '@front-monitor/common';
 import { ReportData, InitOptions } from '@front-monitor/types';
 import { breadcrumb } from './breadcrumb';
 import { options } from './options';
@@ -71,7 +79,9 @@ export class TransportData {
       if (typeof id === 'string' || typeof id === 'number') {
         return id;
       } else {
-        console.error(`front-monitor userId: ${id} 期望 string 或 number 类型，但是传入 ${typeof id}`);
+        console.error(
+          `front-monitor userId: ${id} 期望 string 或 number 类型，但是传入 ${typeof id}`
+        );
       }
     }
     return '';
@@ -89,8 +99,12 @@ export class TransportData {
     };
 
     // 性能数据、录屏、白屏检测等不需要附带用户行为
-    const excludeRreadcrumb = [EVENTTYPES.PERFORMANCE, EVENTTYPES.RECORDSCREEN, EVENTTYPES.WHITESCREEN];
-    if (!excludeRreadcrumb.includes(data.type)) {
+    const excludeBreadcrumb = [
+      EVENT_TYPES.PERFORMANCE,
+      EVENT_TYPES.RECORD_SCREEN,
+      EVENT_TYPES.WHITE_SCREEN,
+    ];
+    if (!excludeBreadcrumb.includes(data.type)) {
       info.breadcrumb = breadcrumb.getStack(); // 获取用户行为栈
     }
     return info;
@@ -110,8 +124,10 @@ export class TransportData {
     validateOption(apikey, 'apikey', 'string') && (this.apikey = apikey);
     validateOption(dsn, 'dsn', 'string') && (this.errorDsn = dsn);
     validateOption(userId, 'userId', 'string') && (this.userId = userId || '');
-    validateOption(useImgUpload, 'useImgUpload', 'boolean') && (this.useImgUpload = useImgUpload || false);
-    validateOption(beforeDataReport, 'beforeDataReport', 'function') && (this.beforeDataReport = beforeDataReport);
+    validateOption(useImgUpload, 'useImgUpload', 'boolean') &&
+      (this.useImgUpload = useImgUpload || false);
+    validateOption(beforeDataReport, 'beforeDataReport', 'function') &&
+      (this.beforeDataReport = beforeDataReport);
     validateOption(getUserId, 'getUserId', 'function') && (this.getUserId = getUserId);
   }
 

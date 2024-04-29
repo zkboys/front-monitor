@@ -1,13 +1,13 @@
 import { getWebVitals, getResource } from './core/performance';
 import { SdkBase, BasePlugin } from '@front-monitor/types';
-import { EVENTTYPES, STATUS_CODE } from '@front-monitor/common';
+import { EVENT_TYPES, STATUS_CODE } from '@front-monitor/common';
 import { getTimestamp, _global, on } from '@front-monitor/utils';
 
 export default class WebPerformance extends BasePlugin {
   type: string;
   constructor() {
-    super(EVENTTYPES.PERFORMANCE);
-    this.type = EVENTTYPES.PERFORMANCE;
+    super(EVENT_TYPES.PERFORMANCE);
+    this.type = EVENT_TYPES.PERFORMANCE;
   }
   bindOptions() {}
   core({ transportData }: SdkBase) {
@@ -16,7 +16,7 @@ export default class WebPerformance extends BasePlugin {
       // name指标名称、rating 评级、value数值
       const { name, rating, value } = res;
       transportData.send({
-        type: EVENTTYPES.PERFORMANCE,
+        type: EVENT_TYPES.PERFORMANCE,
         status: STATUS_CODE.OK,
         time: getTimestamp(),
         name,
@@ -29,7 +29,7 @@ export default class WebPerformance extends BasePlugin {
       for (const long of list.getEntries()) {
         // 上报长任务详情
         transportData.send({
-          type: EVENTTYPES.PERFORMANCE,
+          type: EVENT_TYPES.PERFORMANCE,
           name: 'longTask',
           longTask: long,
           time: getTimestamp(),
@@ -42,7 +42,7 @@ export default class WebPerformance extends BasePlugin {
     on(_global, 'load', function () {
       // 上报资源列表
       transportData.send({
-        type: EVENTTYPES.PERFORMANCE,
+        type: EVENT_TYPES.PERFORMANCE,
         name: 'resourceList',
         time: getTimestamp(),
         status: STATUS_CODE.OK,
@@ -52,7 +52,7 @@ export default class WebPerformance extends BasePlugin {
       // 上报内存情况, safari、firefox不支持该属性
       if (performance.memory) {
         transportData.send({
-          type: EVENTTYPES.PERFORMANCE,
+          type: EVENT_TYPES.PERFORMANCE,
           name: 'memory',
           time: getTimestamp(),
           status: STATUS_CODE.OK,

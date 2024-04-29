@@ -7,7 +7,7 @@ import {
   httpTransform,
   options,
 } from './index';
-import { EVENTTYPES, STATUS_CODE } from '@front-monitor/common';
+import { EVENT_TYPES, STATUS_CODE } from '@front-monitor/common';
 import {
   getErrorUid,
   hashMapExist,
@@ -33,7 +33,7 @@ function report(errorData: any, hashStr: string) {
 
 const HandleEvents = {
   // 处理xhr、fetch回调
-  handleHttp(data: HttpData, type: EVENTTYPES): void {
+  handleHttp(data: HttpData, type: EVENT_TYPES): void {
     const result = httpTransform(data);
     // 添加用户行为，去掉自身上报的接口行为
     if (!data.url.includes(options.dsn)) {
@@ -60,7 +60,7 @@ const HandleEvents = {
       const stackFrame = ErrorStackParser.parse(!target ? ev : ev.error)[0];
       const { fileName, columnNumber, lineNumber } = stackFrame;
       const errorData = {
-        type: EVENTTYPES.ERROR,
+        type: EVENT_TYPES.ERROR,
         status: STATUS_CODE.ERROR,
         time: getTimestamp(),
         message: ev.message,
@@ -69,13 +69,13 @@ const HandleEvents = {
         column: columnNumber,
       };
       breadcrumb.push({
-        type: EVENTTYPES.ERROR,
-        category: breadcrumb.getCategory(EVENTTYPES.ERROR),
+        type: EVENT_TYPES.ERROR,
+        category: breadcrumb.getCategory(EVENT_TYPES.ERROR),
         data: errorData,
         time: getTimestamp(),
         status: STATUS_CODE.ERROR,
       });
-      const hashStr = `${EVENTTYPES.ERROR}-${ev.message}-${fileName}-${columnNumber}`;
+      const hashStr = `${EVENT_TYPES.ERROR}-${ev.message}-${fileName}-${columnNumber}`;
 
       return report(errorData, hashStr);
     }
@@ -85,15 +85,15 @@ const HandleEvents = {
       // 提取资源加载的信息
       const data = resourceTransform(target);
       breadcrumb.push({
-        type: EVENTTYPES.RESOURCE,
-        category: breadcrumb.getCategory(EVENTTYPES.RESOURCE),
+        type: EVENT_TYPES.RESOURCE,
+        category: breadcrumb.getCategory(EVENT_TYPES.RESOURCE),
         status: STATUS_CODE.ERROR,
         time: getTimestamp(),
         data,
       });
       const errorData = {
         ...data,
-        type: EVENTTYPES.RESOURCE,
+        type: EVENT_TYPES.RESOURCE,
         status: STATUS_CODE.ERROR,
       };
       const hashStr = `${target?.localName}`;
@@ -107,8 +107,8 @@ const HandleEvents = {
     const { relative: parsedFrom } = parseUrlToObj(from);
     const { relative: parsedTo } = parseUrlToObj(to);
     breadcrumb.push({
-      type: EVENTTYPES.HISTORY,
-      category: breadcrumb.getCategory(EVENTTYPES.HISTORY),
+      type: EVENT_TYPES.HISTORY,
+      category: breadcrumb.getCategory(EVENT_TYPES.HISTORY),
       data: {
         from: parsedFrom ? parsedFrom : '/',
         to: parsedTo ? parsedTo : '/',
@@ -122,8 +122,8 @@ const HandleEvents = {
     const { relative: from } = parseUrlToObj(oldURL);
     const { relative: to } = parseUrlToObj(newURL);
     breadcrumb.push({
-      type: EVENTTYPES.HASHCHANGE,
-      category: breadcrumb.getCategory(EVENTTYPES.HASHCHANGE),
+      type: EVENT_TYPES.HASHCHANGE,
+      category: breadcrumb.getCategory(EVENT_TYPES.HASHCHANGE),
       data: {
         from,
         to,
@@ -137,7 +137,7 @@ const HandleEvents = {
     const { fileName, columnNumber, lineNumber } = stackFrame;
     const message = unknownToString(ev.reason.message || ev.reason.stack);
     const errorData = {
-      type: EVENTTYPES.UNHANDLEDREJECTION,
+      type: EVENT_TYPES.UNHANDLEDREJECTION,
       status: STATUS_CODE.ERROR,
       time: getTimestamp(),
       message,
@@ -147,14 +147,14 @@ const HandleEvents = {
     };
 
     breadcrumb.push({
-      type: EVENTTYPES.UNHANDLEDREJECTION,
-      category: breadcrumb.getCategory(EVENTTYPES.UNHANDLEDREJECTION),
+      type: EVENT_TYPES.UNHANDLEDREJECTION,
+      category: breadcrumb.getCategory(EVENT_TYPES.UNHANDLEDREJECTION),
       time: getTimestamp(),
       status: STATUS_CODE.ERROR,
       data: errorData,
     });
 
-    const hashStr = `${EVENTTYPES.UNHANDLEDREJECTION}-${message}-${fileName}-${columnNumber}`;
+    const hashStr = `${EVENT_TYPES.UNHANDLEDREJECTION}-${message}-${fileName}-${columnNumber}`;
 
     return report(errorData, hashStr);
   },
@@ -162,7 +162,7 @@ const HandleEvents = {
     openWhiteScreen((res: any) => {
       // 上报白屏检测信息
       transportData.send({
-        type: EVENTTYPES.WHITESCREEN,
+        type: EVENT_TYPES.WHITE_SCREEN,
         time: getTimestamp(),
         ...res,
       });

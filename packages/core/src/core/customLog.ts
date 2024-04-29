@@ -1,11 +1,11 @@
 import ErrorStackParser from 'error-stack-parser';
 import { transportData } from './reportData';
 import { breadcrumb } from './breadcrumb';
-import { EVENTTYPES, STATUS_CODE } from '@front-monitor/common';
+import { EVENT_TYPES, STATUS_CODE } from '@front-monitor/common';
 import { isError, getTimestamp, unknownToString } from '@front-monitor/utils';
 
 // 自定义上报事件
-export function log({ message = 'customMsg', error = '', type = EVENTTYPES.CUSTOM }: any): void {
+export function log({ message = 'customMsg', error = '', type = EVENT_TYPES.CUSTOM }: any): void {
   try {
     let errorInfo = {};
     if (isError(error)) {
@@ -15,7 +15,7 @@ export function log({ message = 'customMsg', error = '', type = EVENTTYPES.CUSTO
     breadcrumb.push({
       type,
       status: STATUS_CODE.ERROR,
-      category: breadcrumb.getCategory(EVENTTYPES.CUSTOM),
+      category: breadcrumb.getCategory(EVENT_TYPES.CUSTOM),
       data: unknownToString(message),
       time: getTimestamp(),
     });

@@ -10,7 +10,7 @@ import {
   HandleEvents,
 } from './core';
 import { _global, getFlag, setFlag, nativeTryCatch } from '@front-monitor/utils';
-import { SDK_VERSION, SDK_NAME, EVENTTYPES } from '@front-monitor/common';
+import { SDK_VERSION, SDK_NAME, EVENT_TYPES } from '@front-monitor/common';
 import { InitOptions, VueInstance, ViewModel } from '@front-monitor/types';
 
 function init(options: InitOptions) {
@@ -24,8 +24,8 @@ function init(options: InitOptions) {
 }
 
 function install(Vue: VueInstance, options: InitOptions) {
-  if (getFlag(EVENTTYPES.VUE)) return;
-  setFlag(EVENTTYPES.VUE, true);
+  if (getFlag(EVENT_TYPES.VUE)) return;
+  setFlag(EVENT_TYPES.VUE, true);
   const handler = Vue.config.errorHandler;
   // vue项目在Vue.config.errorHandler中上报错误
   Vue.config.errorHandler = function (err: Error, vm: ViewModel, info: string): void {
@@ -38,8 +38,8 @@ function install(Vue: VueInstance, options: InitOptions) {
 
 // react项目在ErrorBoundary中上报错误
 function errorBoundary(err: Error): void {
-  if (getFlag(EVENTTYPES.REACT)) return;
-  setFlag(EVENTTYPES.REACT, true);
+  if (getFlag(EVENT_TYPES.REACT)) return;
+  setFlag(EVENT_TYPES.REACT, true);
   HandleEvents.handleError(err);
 }
 

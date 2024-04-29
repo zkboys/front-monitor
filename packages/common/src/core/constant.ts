@@ -24,11 +24,11 @@ export enum SpanStatus {
 /**
  * 用户行为
  */
-export enum BREADCRUMBTYPES {
+export enum BREADCRUMB_TYPES {
   HTTP = 'Http',
   CLICK = 'Click',
   RESOURCE = 'Resource_Error',
-  CODEERROR = 'Code_Error',
+  CODE_ERROR = 'Code_Error',
   ROUTE = 'Route',
   CUSTOM = 'Custom',
 }
@@ -44,7 +44,7 @@ export enum STATUS_CODE {
 /**
  * 事件类型
  */
-export enum EVENTTYPES {
+export enum EVENT_TYPES {
   XHR = 'xhr',
   FETCH = 'fetch',
   CLICK = 'click',
@@ -58,11 +58,11 @@ export enum EVENTTYPES {
   REACT = 'react',
   CUSTOM = 'custom',
   PERFORMANCE = 'performance',
-  RECORDSCREEN = 'recordScreen',
-  WHITESCREEN = 'whiteScreen',
+  RECORD_SCREEN = 'recordScreen',
+  WHITE_SCREEN = 'whiteScreen',
 }
 
-export enum HTTPTYPE {
+export enum HTTP_TYPE {
   XHR = 'xhr',
   FETCH = 'fetch',
 }

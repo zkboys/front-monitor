@@ -7,8 +7,10 @@ import { uglify } from 'rollup-plugin-uglify';
 import dts from 'rollup-plugin-dts';
 import fs from 'fs';
 import path from 'path';
+
 const packagesDir = path.resolve(__dirname, 'packages');
 const packageFiles = fs.readdirSync(packagesDir);
+
 function output(path) {
   return [
     {
@@ -18,23 +20,27 @@ function output(path) {
           file: `./packages/${path}/dist/index.cjs.js`,
           format: 'cjs',
           sourcemap: true,
+          exports: 'auto',
         },
         {
           file: `./packages/${path}/dist/index.esm.js`,
           format: 'esm',
           sourcemap: true,
+          exports: 'auto',
         },
         {
           file: `./packages/${path}/dist/index.js`,
           format: 'umd',
           name: 'front-monitor',
           sourcemap: true,
+          exports: 'auto',
         },
         {
           file: `./packages/${path}/dist/index.min.js`,
           format: 'umd',
           name: 'front-monitor',
           sourcemap: true,
+          exports: 'auto',
           plugins: [uglify()],
         },
       ],
