@@ -1,6 +1,7 @@
 {
   "name": "@front-monitor/core",
   "version": "1.0.4",
+  "private": false,
   "description": "",
   "main": "src/index.ts",
   "module": "dist/index.esm.js",
