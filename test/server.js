@@ -62,7 +62,7 @@ app.get('/getErrorList', (req, res) => {
 
 app.get('/getRecordScreenId', (req, res) => {
   let id = req.query.id;
-  let data = recordScreenList.filter(item => item.recordScreenId == id);
+  let data = recordScreenList.filter(item => item.recordScreenId === id);
   res.send({
     code: 200,
     data,
@@ -79,11 +79,11 @@ app.post('/reportData', async (req, res) => {
       // 使用 web beacon 上报数据
       let data = await coBody.json(req);
       if (!data) return;
-      if (data.type == 'performance') {
+      if (data.type === 'performance') {
         performanceList.push(data);
-      } else if (data.type == 'recordScreen') {
+      } else if (data.type === 'recordScreen') {
         recordScreenList.push(data);
-      } else if (data.type == 'whiteScreen') {
+      } else if (data.type === 'whiteScreen') {
         whiteScreenList.push(data);
       } else {
         errorList.push(data);

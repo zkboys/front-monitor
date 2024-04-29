@@ -43,7 +43,7 @@ function errorBoundary(err: Error): void {
   HandleEvents.handleError(err);
 }
 
-function use(plugin: any, option: any) {
+function use(plugin: any, option?: any) {
   const instance = new plugin(option);
   if (
     !subscribeEvent({
