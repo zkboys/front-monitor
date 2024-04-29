@@ -10,7 +10,7 @@
     "changeset": "changeset",
     "version-packages": "changeset version",
     "publish": "changeset publish --registry=https://registry.npmjs.com/",
-    "release": "pnpm clean && pnpm build && pnpm changeset && pnpm version-packages && pnpm  pnpm run publish",
+    "release": "pnpm clean && pnpm build && pnpm changeset && pnpm version-packages && pnpm run publish",
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "keywords": [
