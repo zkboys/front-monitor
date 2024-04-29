@@ -62,5 +62,9 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:zkboys/front-monitor.git"
   }
 }
