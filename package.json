@@ -14,9 +14,9 @@
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "keywords": [
-    "web see",
+    "front monitor",
     "web monitor",
-    "web see sdk"
+    "front monitor sdk"
   ],
   "author": "zkboys",
   "license": "MIT",
