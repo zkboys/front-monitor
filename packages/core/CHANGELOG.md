@@ -1,5 +1,15 @@
 # @front-monitor/core
 
+## 1.0.4
+
+### Patch Changes
+
+- 28ae45e: 测试 111
+- Updated dependencies [28ae45e]
+  - @front-monitor/common@1.0.4
+  - @front-monitor/types@1.0.4
+  - @front-monitor/utils@1.0.4
+
 ## 1.0.3
 
 ### Patch Changes

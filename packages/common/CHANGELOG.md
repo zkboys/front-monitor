@@ -1,5 +1,11 @@
 # @front-monitor/common
 
+## 1.0.4
+
+### Patch Changes
+
+- 28ae45e: 测试 111
+
 ## 1.0.3
 
 ### Patch Changes
