@@ -1,0 +1,23 @@
+{
+  "name": "@front-monitor/utils",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/index.ts",
+  "module": "dist/index.esm.js",
+  "publishConfig": {
+    "main": "dist/index.js"
+  },
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "author": "zkboys",
+  "license": "MIT",
+  "dependencies": {
+    "@types/ua-parser-js": "^0.7.36",
+    "ua-parser-js": "1.0.32",
+    "@front-monitor/common": "workspace:*",
+    "@front-monitor/core": "workspace:*",
+    "@front-monitor/types": "workspace:*"
+  }
+}

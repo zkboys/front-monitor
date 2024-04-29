@@ -1,0 +1,22 @@
+{
+  "name": "@front-monitor/performance",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/index.ts",
+  "module": "dist/index.esm.js",
+  "publishConfig": {
+    "main": "dist/index.js"
+  },
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "author": "zkboys",
+  "license": "MIT",
+  "dependencies": {
+    "@front-monitor/common": "workspace:*",
+    "@front-monitor/types": "workspace:*",
+    "@front-monitor/utils": "workspace:*",
+    "web-vitals": "^3.1.0"
+  }
+}
