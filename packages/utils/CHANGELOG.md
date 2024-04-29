@@ -1,5 +1,15 @@
 # @front-monitor/utils
 
+## 1.0.2
+
+### Patch Changes
+
+- 就是测试啊
+- Updated dependencies
+  - @front-monitor/common@1.0.2
+  - @front-monitor/core@1.0.2
+  - @front-monitor/types@1.0.2
+
 ## 1.0.1
 
 ### Patch Changes

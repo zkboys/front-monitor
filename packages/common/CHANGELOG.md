@@ -1,5 +1,11 @@
 # @front-monitor/common
 
+## 1.0.2
+
+### Patch Changes
+
+- 就是测试啊
+
 ## 1.0.1
 
 ### Patch Changes
