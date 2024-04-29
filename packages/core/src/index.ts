@@ -8,7 +8,7 @@ import {
   log,
   setupReplace,
   HandleEvents,
-} from './core/index';
+} from './core';
 import { _global, getFlag, setFlag, nativeTryCatch } from '@front-monitor/utils';
 import { SDK_VERSION, SDK_NAME, EVENTTYPES } from '@front-monitor/common';
 import { InitOptions, VueInstance, ViewModel } from '@front-monitor/types';
