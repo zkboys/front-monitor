@@ -1,5 +1,11 @@
 # @front-monitor/common
 
+## 1.0.1
+
+### Patch Changes
+
+- 19a1a69: 测试一下发布
+
 ## 1.0.0
 
 ### Major Changes
