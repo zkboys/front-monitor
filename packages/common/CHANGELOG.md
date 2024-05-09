@@ -1,5 +1,11 @@
 # @front-monitor/common
 
+## 1.0.0
+
+### Major Changes
+
+- 修改参数
+
 ## 0.0.5
 
 ### Patch Changes

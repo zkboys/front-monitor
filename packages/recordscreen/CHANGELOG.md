@@ -1,5 +1,18 @@
 # @front-monitor/recordscreen
 
+## 1.0.0
+
+### Major Changes
+
+- 修改参数
+
+### Patch Changes
+
+- Updated dependencies
+  - @front-monitor/common@1.0.0
+  - @front-monitor/types@1.0.0
+  - @front-monitor/utils@1.0.0
+
 ## 0.0.5
 
 ### Patch Changes
