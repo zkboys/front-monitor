@@ -14,8 +14,8 @@ import { SDK_VERSION, SDK_NAME, EVENT_TYPES } from '@front-monitor/common';
 import { InitOptions, VueInstance, ViewModel } from '@front-monitor/types';
 
 function init(options: InitOptions) {
-  if (!options.dsn || !options.apikey) {
-    return console.error(`front-monitor 缺少必须配置项：${!options.dsn ? 'dsn' : 'apikey'} `);
+  if (!options.dsn || !options.appKey) {
+    return console.error(`front-monitor 缺少必须配置项：${!options.dsn ? 'dsn' : 'appKey'} `);
   }
   if (!('fetch' in _global) || options.disabled) return;
   // 初始化配置

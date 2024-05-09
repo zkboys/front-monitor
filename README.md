@@ -59,7 +59,7 @@ import recordscreen from '@front-monitor/recordscreen';
 
 Vue.use(frontMonitor, {
   dsn: 'https://example.com/monitor', // 上报的地址
-  apikey: '4cd90ffb265e44228319f6b83079924d', // 项目唯一的id
+  appKey: '4cd90ffb265e44228319f6b83079924d', // 项目唯一的id
   userId: '18611436666', // 用户id
   reportOnlyOnce: true, // 只上报一次
   silentWhiteScreen: true, // 开启白屏检测
@@ -92,7 +92,7 @@ import recordscreen from '@front-monitor/recordscreen';
 const app = createApp(App);
 app.use(frontMonitor, {
   dsn: 'https://example.com/monitor', // 上报的地址
-  apikey: '4cd90ffb265e44228319f6b83079924d', // 项目唯一的id
+  appKey: '4cd90ffb265e44228319f6b83079924d', // 项目唯一的id
   userId: '18611436666', // 用户id
 });
 
@@ -109,7 +109,7 @@ import recordscreen from '@front-monitor/recordscreen';
 
 frontMonitor.init({
   dsn: 'https://example.com/monitor', // 上报的地址
-  apikey: '4cd90ffb265e44228319f6b83079924d', // 项目唯一的id
+  appKey: '4cd90ffb265e44228319f6b83079924d', // 项目唯一的id
   userId: '18611436666', // 用户id
 });
 
@@ -156,7 +156,7 @@ ErrorBoundary
 |          Name          | Type       | Default                             | Description                                                                                                                                                        |
 |:----------------------:|------------|-------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |         `dsn`          | `string`   | `""`                                | (必传项) 上报接口的地址，post 方法                                                                                                                                              |
-|        `apikey`        | `string`   | `""`                                | (必传项) 每个项目对应一个 apikey，唯一标识                                                                                                                                         |
+|        `appKey`        | `string`   | `""`                                | (必传项) 每个项目对应一个 appKey，唯一标识                                                                                                                                         |
 |        `userId`        | `string`   | `""`                                | 用户 id                                                                                                                                                              |
 |       `disabled`       | `boolean`  | `false`                             | 默认是开启 SDK，为 true 时，会将 sdk 禁用                                                                                                                                       |
 |  `silentWhiteScreen`   | `boolean`  | `false`                             | 注意：默认不会开启白屏检测，为 true 时，开启检测                                                                                                                                        |
@@ -241,7 +241,7 @@ import frontMonitor from 'frontMonitor';
 
 Vue.use(frontMonitor, {
   dsn: 'http://test.com/reportData',
-  apikey: 'abcd',
+  appKey: 'abcd',
   // handleHttpStatus 返回true表示接口正常，反之表示接口报错
   handleHttpStatus(data) {
     let { url, response } = data;
