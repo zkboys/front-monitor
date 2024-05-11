@@ -138,6 +138,12 @@ export class TransportData {
       console.error('front-monitor: dsn为空，没有传入监控错误上报的dsn地址，请在init中传入');
       return;
     }
+
+    const result = (await this.beforePost(data)) as ReportData;
+
+    // 录屏以及错误都不上报
+    if (!result) return;
+
     // 开启录屏，由@front-monitor/recordScreen 插件控制
     if (_support.options.silentRecordScreen) {
       if (options.recordScreenTypeList.includes(data.type)) {
@@ -146,8 +152,8 @@ export class TransportData {
         data.recordScreenId = _support.recordScreenId;
       }
     }
-    const result = (await this.beforePost(data)) as ReportData;
-    if (isBrowserEnv && result) {
+
+    if (isBrowserEnv) {
       // 优先使用sendBeacon 上报，若数据量大，再使用图片打点上报和fetch上报
       const value = this.beacon(dsn, result);
       if (!value) {

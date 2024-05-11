@@ -5,7 +5,12 @@ import { EVENT_TYPES, STATUS_CODE } from '@front-monitor/common';
 import { isError, getTimestamp, unknownToString } from '@front-monitor/utils';
 
 // 自定义上报事件
-export function log({ message = 'customMsg', error = '', type = EVENT_TYPES.CUSTOM }: any): void {
+export function log({
+  message = 'customMsg',
+  error = '',
+  data,
+  type = EVENT_TYPES.CUSTOM,
+}: any): void {
   try {
     let errorInfo = {};
     if (isError(error)) {
@@ -24,6 +29,7 @@ export function log({ message = 'customMsg', error = '', type = EVENT_TYPES.CUST
       status: STATUS_CODE.ERROR,
       message: unknownToString(message),
       time: getTimestamp(),
+      data,
       ...errorInfo,
     });
   } catch (err) {

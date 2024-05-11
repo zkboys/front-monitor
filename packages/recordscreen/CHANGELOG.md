@@ -1,5 +1,15 @@
 # @front-monitor/recordscreen
 
+## 1.0.1
+
+### Patch Changes
+
+- cli
+- Updated dependencies
+  - @front-monitor/types@1.0.1
+  - @front-monitor/common@1.0.1
+  - @front-monitor/utils@1.0.1
+
 ## 1.0.0
 
 ### Major Changes

@@ -9,9 +9,36 @@ import fs from 'fs';
 import path from 'path';
 
 const packagesDir = path.resolve(__dirname, 'packages');
-const packageFiles = fs.readdirSync(packagesDir);
+// 命令行工具，打包方式与其他不同
+const cliFiles = ['cli'];
 
-function output(path) {
+const packageFiles = fs.readdirSync(packagesDir).filter(file => !cliFiles.includes(file));
+
+function cliOutput(path) {
+  return {
+    input: [`./packages/${path}/src/index.ts`],
+    output: {
+      file: `./packages/${path}/dist/index.js`,
+      format: 'cjs', // CommonJS，适合 Node.js 环境
+      banner: '#!/usr/bin/env node', // 添加这行使得输出文件在 Unix-like 系统上可执行
+    },
+    plugins: [
+      typescript({
+        tsconfigOverride: {
+          compilerOptions: {
+            module: 'ESNext',
+          },
+        },
+        useTsconfigDeclarationDir: true,
+      }),
+      resolve(),
+      commonjs(),
+      json(),
+    ],
+  };
+}
+
+function packageOutput(path) {
   return [
     {
       input: [`./packages/${path}/src/index.ts`],
@@ -71,4 +98,7 @@ function output(path) {
   ];
 }
 
-export default [...packageFiles.map(path => output(path)).flat()];
+export default [
+  ...packageFiles.map(path => packageOutput(path)).flat(),
+  ...cliFiles.map(path => cliOutput(path)),
+];

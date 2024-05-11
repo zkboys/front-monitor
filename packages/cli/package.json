@@ -1,5 +1,5 @@
 {
-  "name": "@front-monitor/performance",
+  "name": "@front-monitor/cli",
   "version": "1.0.1",
   "private": false,
   "description": "",
@@ -8,17 +8,24 @@
   "publishConfig": {
     "main": "dist/index.js"
   },
-  "type": "module",
   "files": [
     "dist"
   ],
+  "bin": {
+    "front-monitor-cli": "dist/index.js"
+  },
   "author": "zkboys",
   "license": "MIT",
   "dependencies": {
     "@front-monitor/common": "workspace:*",
+    "@front-monitor/core": "workspace:*",
     "@front-monitor/types": "workspace:*",
-    "@front-monitor/utils": "workspace:*",
-    "web-vitals": "^3.1.0"
+    "@types/archiver": "^6.0.2",
+    "archiver": "^7.0.1",
+    "axios": "^1.6.8",
+    "commander": "^12.0.0",
+    "form-data": "^4.0.0",
+    "glob": "^10.3.14"
   },
   "repository": {
     "type": "git",
